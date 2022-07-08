@@ -3,4 +3,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Workout Buddy 
-## A Workout Companion Made With React UI Library For Frontend
+A Workout Companion Made With React UI Library For Frontend
+
+### live here: https://zuxxy-workout-buddy.netlify.app/
