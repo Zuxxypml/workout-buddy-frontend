@@ -9,12 +9,12 @@ const Workoutform = () => {
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
   const { dispatch } = useWorkoutsContext();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const workout = { title, load, reps };
-    console.log(workout);
 
     const response = await fetch(
       "https://zuxxy-workout-buddy-api.herokuapp.com/api/workouts",
@@ -31,12 +31,14 @@ const Workoutform = () => {
 
     if (!response.ok) {
       setError(json.error);
+      json.emptyFieldsArray && setEmptyFields(json.emptyFieldsArray);
     }
     if (response.ok) {
       setError(null);
       setTitle("");
       setLoad("");
       setReps("");
+      setEmptyFields([]);
       console.log("new workout added:", json);
       dispatch({ type: "CREATE_WORKOUT", payload: json });
     }
@@ -51,6 +53,7 @@ const Workoutform = () => {
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
+        className={emptyFields.includes("title") ? "error" : ""}
       />
 
       <label>Load (in kg):</label>
@@ -58,6 +61,7 @@ const Workoutform = () => {
         type="number"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
+        className={emptyFields.includes("load") ? "error" : ""}
       />
 
       <label>Number of Reps:</label>
@@ -65,6 +69,7 @@ const Workoutform = () => {
         type="number"
         onChange={(e) => setReps(e.target.value)}
         value={reps}
+        className={emptyFields.includes("reps") ? "error" : ""}
       />
 
       <Button type="submit" className="Button" endIcon={<AddIcon />}>
