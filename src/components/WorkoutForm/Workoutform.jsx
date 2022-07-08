@@ -14,14 +14,17 @@ const Workoutform = () => {
     const workout = { title, load, reps };
     console.log(workout);
 
-    const response = await fetch("/api/workouts", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(workout),
-    });
+    const response = await fetch(
+      "https://zuxxy-workout-buddy-api.herokuapp.com/api/workouts",
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workout),
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {

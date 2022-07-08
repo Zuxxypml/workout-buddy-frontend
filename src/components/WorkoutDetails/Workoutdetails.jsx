@@ -7,13 +7,16 @@ function Workoutdetails(props) {
     return workout._id !== _id;
   });
   async function handleDelete() {
-    const rawResponse = await fetch(`/api/workouts/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify({ _id: _id }),
-    });
+    const rawResponse = await fetch(
+      `https://zuxxy-workout-buddy-api.herokuapp.com/api/workouts/${_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify({ _id: _id }),
+      }
+    );
     const response = await rawResponse.json();
     if (rawResponse.ok) {
       dispatch({ type: "SET_WORKOUTS", payload: newWorkouts });
