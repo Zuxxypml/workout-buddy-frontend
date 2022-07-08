@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useWorkoutsContext } from "../../hooks/WorkoutsContextHook";
+import AddIcon from "@mui/icons-material/Add";
+import Button from "@mui/material/Button";
 
 const Workoutform = () => {
   const [title, setTitle] = useState("");
@@ -65,7 +67,9 @@ const Workoutform = () => {
         value={reps}
       />
 
-      <button type="submit">Add Workout</button>
+      <Button type="submit" className="Button" endIcon={<AddIcon />}>
+        Add Workout
+      </Button>
       {error && <div className="error">{error}</div>}
     </form>
   );

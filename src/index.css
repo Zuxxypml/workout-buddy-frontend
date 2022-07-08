@@ -82,7 +82,7 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
-form button {
+form .Button {
   background: var(--primary);
   border: 0;
   color: #fff;

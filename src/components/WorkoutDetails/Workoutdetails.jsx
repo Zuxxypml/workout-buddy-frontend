@@ -1,5 +1,8 @@
-import React from "react";
+import * as React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useWorkoutsContext } from "../../hooks/WorkoutsContextHook";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
 function Workoutdetails(props) {
   const { title, load, reps, createdAt, _id } = props.workout;
   const { workouts, dispatch } = useWorkoutsContext();
@@ -30,8 +33,10 @@ function Workoutdetails(props) {
         Load {`{KG}`}: {load}{" "}
       </p>
       <p>Reps: {reps} </p>
-      <p>CreatedAt: {createdAt}</p>
-      <span onClick={handleDelete}>Delete</span>
+      <p>{formatDistanceToNow(new Date(createdAt), { addSuffix: true })}</p>
+      <span onClick={handleDelete}>
+        <DeleteIcon />
+      </span>
     </div>
   );
 }
